@@ -33,12 +33,10 @@ public class GameInfo : MonoBehaviour
   public void AddPoints(float pointsToAdd)
   {
     points += pointsToAdd;
-    Debug.Log("Points: " + points);
   }
 
   public void ResetGame()
   {
-    Debug.Log("ResetGame");
     DestroyAllPipeGroup();
     points = 0;
     isGameOver = false;
@@ -67,7 +65,6 @@ public class GameInfo : MonoBehaviour
 
   public void EndGame()
   {
-    Debug.Log("EndGame");
     isGameOver = true;
     _isGrounded = true;
   }

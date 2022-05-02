@@ -17,11 +17,19 @@ public class BirdMovement : MonoBehaviour
   private Rigidbody2D _rigidbody;
   private Animator _animator;
   private bool _isDead;
+  private AudioSource _wingAudioSource;
+  private AudioSource _dieAudioSource;
+  private AudioSource _hitAudioSource;
+  private AudioSource _pointAudioSource;
 
   void Awake()
   {
     _rigidbody = GetComponent<Rigidbody2D>();
     _animator = GetComponent<Animator>();
+    _wingAudioSource = GetComponents<AudioSource>()[0];
+    _dieAudioSource = GetComponents<AudioSource>()[1];
+    _hitAudioSource = GetComponents<AudioSource>()[2];
+    _pointAudioSource = GetComponents<AudioSource>()[3];
   }
 
   void Start()
@@ -45,6 +53,7 @@ public class BirdMovement : MonoBehaviour
     // Is Jumping?
     if (IsJumpButton() && !_isDead)
     {
+      _wingAudioSource.Play();
       _rigidbody.velocity = Vector2.zero;
       _rigidbody.AddForce(new Vector2(0f, junpForce), ForceMode2D.Impulse);
     }
@@ -57,19 +66,22 @@ public class BirdMovement : MonoBehaviour
       _isDead = true;
       //_animator.SetTrigger("Die");
 
+      _dieAudioSource.Play();
       other.SendMessageUpwards("EndGame");
     }
-    else if (other.CompareTag("Pipe"))
+    else if (other.CompareTag("Pipe") && !_isDead)
     {
       _isDead = true;
       //_animator.SetTrigger("Die");
 
+      _hitAudioSource.Play();
       other.SendMessageUpwards("GameOver");
     }
     else if (other.CompareTag("Score") && !_isDead)
     {
       //_animator.SetTrigger("Point");
 
+      _pointAudioSource.Play();
       other.SendMessageUpwards("AddPoints", 1);
     }
   }

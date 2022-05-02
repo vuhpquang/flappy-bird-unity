@@ -6,6 +6,8 @@ public class PipeGroupMovement : MonoBehaviour
 {
   public float speed = 2.5f;
   public Transform[] pipes;
+  public float distance = 2.5f;
+  public float minHeight = 2.1f;
 
   private Rigidbody2D[] _rbPipes = new Rigidbody2D[3];
   private Rigidbody2D _rbGroup;
@@ -14,9 +16,11 @@ public class PipeGroupMovement : MonoBehaviour
 
   void Awake()
   {
-    float bottomPipeScale = Random.Range(0.63f, 1.71f);
-    Debug.Log("bottomPipeScale: " + bottomPipeScale);
-    _topBarScale = 2.34f - bottomPipeScale;
+    float bottomLimit = minHeight * 100 / 320;
+    float topLimit = (10 - distance) * 100 / 320 - bottomLimit;
+    float bottomPipeScale = Random.Range(bottomLimit, topLimit);
+
+    _topBarScale = (10 - distance) * 100 / 320 - bottomPipeScale;
     pipes[0].transform.localScale = new Vector2(2, bottomPipeScale);
     pipes[1].transform.localScale = new Vector2(2, _topBarScale);
 
