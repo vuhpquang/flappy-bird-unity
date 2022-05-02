@@ -3,18 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Decomposer
+  - Pipe
+  - Score
+  - GameInfo
+  - Ground
+  - PipeGroup
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Pipe
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Bird
+  - Ground
+  - Decomposer
   - 
   - 
   - 
@@ -38,6 +44,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3100782783
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2645339189
+    locked: 0
+  - name: HUD
+    uniqueID: 138733783
     locked: 0
