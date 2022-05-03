@@ -57,6 +57,12 @@ public class BirdMovement : MonoBehaviour
       _rigidbody.velocity = Vector2.zero;
       _rigidbody.AddForce(new Vector2(0f, junpForce), ForceMode2D.Impulse);
     }
+    Debug.Log("VerticalVelocity: " + _rigidbody.velocity.y);
+    _animator.SetFloat("VerticalVelocity", _rigidbody.velocity.y);
+  }
+
+  void LateUpdate()
+  {
   }
 
   private void OnTriggerEnter2D(Collider2D other)
